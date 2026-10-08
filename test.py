@@ -1,3 +1,4 @@
+"""Define the Student class and its academic information."""
 class Student:
     """Class representing a student with academic records, grades, and status flags."""
 
@@ -21,7 +22,7 @@ class Student:
             print(f"Error: Invalid grade '{g}'. Grade must be a number.")
             return
 
-        if not (0 <= g <= 100):
+        if not 0 <= g <= 100:
             print(f"Error: Grade {g} is out of bounds. Must be between 0 and 100.")
             return
 
@@ -33,7 +34,6 @@ class Student:
         try:
             if not isinstance(index, int) or isinstance(index, bool):
                 raise TypeError("Index must be an integer.")
-            
             removed_value = self.grades.pop(index)
             print(f"Successfully removed grade {removed_value} at index {index}.")
             self._update_statuses()
@@ -107,7 +107,7 @@ class Student:
         print("=" * 35)
 
 
-def startrun():
+def main():
     """Demonstrate code functionality against all core and extended requirements."""
 
     student = Student("S101", "Christian Palma")
@@ -122,4 +122,5 @@ def startrun():
     student.report()
 
 
-startrun()
+if __name__ == "__main__":
+    main()
