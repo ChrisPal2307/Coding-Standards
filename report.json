@@ -1,0 +1,15 @@
+[
+    {
+        "type": "fatal",
+        "module": "your_module.py",
+        "obj": "",
+        "line": 1,
+        "column": 0,
+        "endLine": null,
+        "endColumn": null,
+        "path": "your_module.py",
+        "symbol": "fatal",
+        "message": "No module named your_module.py",
+        "message-id": "F0001"
+    }
+]

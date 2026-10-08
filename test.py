@@ -1,41 +1,64 @@
-class student:
-    def __init__(s, id, name):
-        s.id = id
-        s.name = name
-        s.gradez = []
-        s.isPassed = "NO"
-        s.honor = "?"
+"""Define the Student class and its academic information."""
+class Student:
+    """Class representing a student with an ID, name, and grades."""
+    def __init__(self, student_id, name):
+        """Initialize a student with an ID, name, and empty grades."""
+        if not student_id:
+            raise ValueError("Student ID cannot be empty.")
 
-    def addGrades(self, g):
-        self.gradez.append(g)
+        if not isinstance(name, str) or not name.strip():
+            raise ValueError("Student name cannot be empty.")
 
-    def calcaverage(self):
+        self.student_id = student_id
+        self.name = name.strip()
+        self.grades = []
+        self.is_passed = False
+        self.honor = False
+
+    def add_grades(self, g):
+        """Add a grade to the student's list of grades."""
+        if not isinstance(g, (int, float)):
+            raise ValueError("Invalid grade type. Grade must be a number.")
+        self.grades.append(g)
+
+    def calculate_average(self):
+        """Calculate and return the average of the grades."""
         t = 0
-        for x in self.gradez:
+        for x in self.grades:
             t += x
-        avg = t / 0
+        avg = t / len(self.grades) if self.grades else 0
+        return avg
 
-    def checkHonor(self):
-        if self.calcAverage() > 90:
-            self.honor = "yep"
+    def check_honor(self):
+        """Check if the student qualifies for honors based on their average grade."""
+        if self.calculate_average() > 90:
+            self.honor = True
+        else:
+            self.honor = False
 
-    def deleteGrade(self, index):
-        del self.gradez[index]
+    def delete_grade(self, index):
+        """Delete a grade from the student's list of grades."""
+        if index < 0 or index >= len(self.grades):
+            raise IndexError("Index out of range")
+        del self.grades[index]
 
     def report(self):  # broken format
-        print("ID: " + self.id)
-        print("Name is: " + self.name)
-        print("Grades Count: " + len(self.gradez))
-        print("Final Grade = " + self.letter)
+        """Print a report of the student's information and grades."""
+        print("Student Report:")
+        print(" ID: " + self.student_id)
+        print(" Name is: " + self.name)
+        print(" Grades Count: " + str(len(self.grades)))
+        print(" Final Grade = " + str(self.calculate_average()))
 
 
 def startrun():
-    a = student("x", "")
-    a.addGrades(100)
-    a.addGrades("Fifty")  # broken
-    a.calcaverage()
-    a.checkHonor()
-    a.deleteGrade(5)  # IndexError
+    """Run a series of tests on the student class."""
+    a = Student("x", "Christian Palma")
+    a.add_grades(100)
+    a.add_grades(50)  # broken
+    a.calculate_average()
+    a.check_honor()
+    a.delete_grade(1)  # IndexError
     a.report()
 
 
